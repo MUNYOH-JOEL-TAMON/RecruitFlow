@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Candidates from './pages/Candidates';
 import AddCandidate from './pages/AddCandidate';
 import CandidateDetail from './pages/CandidateDetail';
+import Settings from './pages/Settings';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -58,6 +59,7 @@ function App() {
         <Route path="candidates" element={<Candidates />} />
         <Route path="candidates/new" element={<AddCandidate />} />
         <Route path="candidates/:id" element={<CandidateDetail />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
       
       <Route path="*" element={<Navigate to="/" replace />} />
