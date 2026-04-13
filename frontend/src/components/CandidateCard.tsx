@@ -24,20 +24,20 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, index }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className={`glass p-4 mb-3 cursor-grab active:cursor-grabbing group
-            ${snapshot.isDragging ? 'shadow-glow-brand ring-1 ring-brand-500 scale-105 z-50' : 'hover:border-white/20 hover:bg-bg-card'}`}
+            ${snapshot.isDragging ? 'shadow-glow-brand ring-1 ring-brand-500 scale-105 z-50' : 'hover:border-brand-200 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-bg-card'}`}
           style={{ ...provided.draggableProps.style }}
         >
           <div className="flex justify-between items-start mb-2">
             <div>
-              <h4 className="text-sm font-semibold text-slate-100 group-hover:text-brand-400 transition-colors">
+              <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                 {candidate.name}
               </h4>
-              <p className="text-xs text-slate-400 truncate w-40">{candidate.position || 'Applicant'}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-40">{candidate.position || 'Applicant'}</p>
             </div>
             <ScoreBadge score={candidate.matchScore} size="sm" />
           </div>
 
-          <div className="flex items-center gap-3 mt-3 text-xs text-slate-500">
+          <div className="flex items-center gap-3 mt-3 text-xs text-slate-600 dark:text-slate-500">
             <div className="flex items-center gap-1" title={candidate.email}>
               <Mail className="w-3.5 h-3.5" />
               <span className="truncate w-20">{candidate.email}</span>
@@ -54,7 +54,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, index }) => {
                 <SkillChip key={`${candidate._id}-skill-${i}`} skill={skill} />
               ))}
               {candidate.skills.length > 3 && (
-                <span className="text-[10px] text-slate-500 font-medium bg-slate-800/50 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] text-slate-600 dark:text-slate-500 font-medium bg-slate-200/50 dark:bg-slate-800/50 px-1.5 py-0.5 rounded">
                   +{candidate.skills.length - 3}
                 </span>
               )}

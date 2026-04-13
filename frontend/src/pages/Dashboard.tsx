@@ -70,11 +70,11 @@ const Dashboard = () => {
       <div className="flex flex-col gap-4 mb-6">
         <div className="flex justify-between items-end">
           <div>
-            <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
-              <BarChart3 className="w-6 h-6 text-brand-400" />
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              <BarChart3 className="w-6 h-6 text-brand-600 dark:text-brand-400" />
               Pipeline Overview
             </h1>
-            <p className="text-slate-400 text-sm mt-1">Manage and track your candidates through the hiring process.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage and track your candidates through the hiring process.</p>
           </div>
         </div>
         

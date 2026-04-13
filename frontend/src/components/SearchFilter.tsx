@@ -19,7 +19,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
   return (
     <div className="glass p-4 flex flex-col md:flex-row gap-4 mb-6">
       <div className="flex-1 relative">
-        <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+        <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
         <input
           type="text"
           placeholder="Search by name, email or position..."
@@ -41,7 +41,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         </div>
         
         <div className="relative w-40 flex items-center gap-2">
-          <span className="text-sm text-slate-400 whitespace-nowrap">Min Score:</span>
+          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">Min Score:</span>
           <select 
             value={minScore} 
             onChange={(e) => setMinScore(e.target.value)}
@@ -57,7 +57,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         {hasFilters && (
           <button 
             onClick={onClear}
-            className="btn-ghost text-slate-400 hover:text-white"
+            className="btn-ghost text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             title="Clear filters"
           >
             <X className="w-5 h-5" />

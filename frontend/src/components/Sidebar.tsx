@@ -13,15 +13,15 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-bg-surface border-r border-white/5 flex flex-col hidden md:flex">
-      <div className="h-16 flex items-center px-6 border-b border-white/5">
-        <div className="flex items-center gap-2 text-brand-400">
-          <div className="w-8 h-8 rounded bg-brand-500/20 flex items-center justify-center border border-brand-500/30">
+    <aside className="w-64 flex-shrink-0 bg-bg-surface border-r border-slate-200 dark:border-white/5 flex flex-col hidden md:flex transition-colors duration-300">
+      <div className="h-16 flex items-center px-6 border-b border-slate-200 dark:border-white/5">
+        <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400">
+          <div className="w-8 h-8 rounded bg-brand-50 dark:bg-brand-500/20 flex items-center justify-center border border-brand-200 dark:border-brand-500/30">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <span className="text-lg font-bold text-slate-100 tracking-tight">RecruitFlow</span>
+          <span className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">RecruitFlow</span>
         </div>
       </div>
 
@@ -44,14 +44,14 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/5 space-y-1">
-        <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-white/5 transition-all duration-200">
+      <div className="p-4 border-t border-slate-200 dark:border-white/5 space-y-1">
+        <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/5 transition-all duration-200">
           <Settings className="w-5 h-5" />
           Settings
         </button>
         <button
           onClick={logout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all duration-200"
         >
           <LogOut className="w-5 h-5" />
           Logout
