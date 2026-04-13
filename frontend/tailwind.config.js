@@ -1,15 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
         // Background layers
         bg: {
-          base: '#080d1a',
-          surface: '#0d1424',
-          card: '#111c30',
-          elevated: '#16233d',
+          base: 'var(--color-bg-base)',
+          surface: 'var(--color-bg-surface)',
+          card: 'var(--color-bg-card)',
+          elevated: 'var(--color-bg-elevated)',
         },
         // Brand
         brand: {

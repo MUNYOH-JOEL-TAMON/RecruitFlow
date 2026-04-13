@@ -5,23 +5,25 @@ import { Toaster } from 'react-hot-toast';
 import App from './App.tsx';
 import './index.css';
 import { AuthProvider } from './context/AuthContext.tsx';
+import { ThemeProvider } from './context/ThemeContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <App />
-        <Toaster 
-          position="top-right" 
-          toastOptions={{ 
-            style: { 
-              background: '#111c30', 
-              color: '#fff', 
-              border: '1px solid rgba(255,255,255,0.1)' 
-            } 
-          }} 
-        />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <App />
+          <Toaster 
+            position="top-right" 
+            toastOptions={{ 
+              className: 'dark:!bg-[#111c30] dark:!text-white dark:!border-white/10 !bg-white !text-slate-900 !border-slate-200',
+              style: { 
+                border: '1px solid',
+              } 
+            }} 
+          />
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

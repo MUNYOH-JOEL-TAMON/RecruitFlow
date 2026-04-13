@@ -1,5 +1,5 @@
-import { useAuth } from '../context/AuthContext';
 import { Search, Menu } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -21,11 +21,12 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="h-6 w-px bg-white/10 hidden sm:block"></div>
+        <ThemeToggle />
+        <div className="h-6 w-px bg-slate-200 dark:bg-white/10 hidden sm:block"></div>
         <div className="flex items-center gap-3">
           <div className="hidden sm:block text-right">
-            <p className="text-sm font-medium text-slate-200">{user?.name}</p>
-            <p className="text-xs text-slate-500 capitalize">{user?.role}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-slate-200">{user?.name}</p>
+            <p className="text-xs text-slate-500">{user?.role}</p>
           </div>
           <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold shadow-lg text-sm border-2 border-bg-surface">
             {user?.name?.charAt(0).toUpperCase() || 'U'}
