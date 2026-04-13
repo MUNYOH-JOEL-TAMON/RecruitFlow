@@ -65,7 +65,7 @@ const CandidateDetail = () => {
 
   return (
     <div className="fade-in max-w-5xl mx-auto pb-12">
-      <Link to="/candidates" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-brand-400 mb-6 transition-colors">
+      <Link to="/candidates" className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" />
         Back to Candidates
       </Link>
@@ -78,13 +78,13 @@ const CandidateDetail = () => {
             
             <div className="flex justify-between items-start mb-6 relative z-10">
               <div>
-                <h1 className="text-3xl font-bold text-slate-100 mb-1">{candidate.name}</h1>
-                <p className="text-brand-400 text-lg font-medium">{candidate.position || 'Applicant'}</p>
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-1">{candidate.name}</h1>
+                <p className="text-brand-600 dark:text-brand-400 text-lg font-medium">{candidate.position || 'Applicant'}</p>
               </div>
               <ScoreBadge score={candidate.matchScore} size="lg" />
             </div>
 
-            <div className="flex flex-wrap gap-4 text-sm text-slate-300 relative z-10 mb-8 pt-4 border-t border-white/5">
+            <div className="flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-300 relative z-10 mb-8 pt-4 border-t border-slate-200 dark:border-white/5">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-slate-500" /> {candidate.email}
               </div>
@@ -119,7 +119,7 @@ const CandidateDetail = () => {
               <FileText className="w-4 h-4" /> Recruiter Notes
             </h3>
             {candidate.notes ? (
-              <p className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">{candidate.notes}</p>
+              <p className="text-slate-700 dark:text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">{candidate.notes}</p>
             ) : (
               <p className="text-slate-500 text-sm italic">No notes added yet.</p>
             )}
@@ -133,7 +133,7 @@ const CandidateDetail = () => {
             <select 
               value={candidate.status} 
               onChange={handleStatusChange}
-              className="input bg-bg-surface w-full mb-6 py-3 font-medium text-brand-300 border-white/10"
+              className="input bg-bg-surface w-full mb-6 py-3 font-medium text-brand-600 dark:text-brand-300 border-slate-200 dark:border-white/10"
             >
               {PIPELINE_STAGES.map(stage => (
                 <option key={stage} value={stage}>{stage}</option>
@@ -169,11 +169,11 @@ const CandidateDetail = () => {
             <div className="glass p-6">
               <h3 className="label mb-3">Added By</h3>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-400">
+                <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-500 dark:text-slate-400">
                   {candidate.addedBy.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-200">{candidate.addedBy.name}</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-slate-200">{candidate.addedBy.name}</p>
                   <p className="text-xs text-slate-500">{candidate.addedBy.email}</p>
                 </div>
               </div>

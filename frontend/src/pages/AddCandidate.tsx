@@ -44,17 +44,17 @@ const AddCandidate = () => {
 
   return (
     <div className="fade-in max-w-3xl mx-auto pb-12">
-      <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-brand-400 mb-6 transition-colors">
+      <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" />
         Back to Dashboard
       </Link>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
-          <UserPlus className="w-6 h-6 text-brand-400" />
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+          <UserPlus className="w-6 h-6 text-brand-600 dark:text-brand-400" />
           Add New Candidate
         </h1>
-        <p className="text-slate-400 text-sm mt-1">Upload a resume and the Smart Screener will automatically parse skills and experience.</p>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Upload a resume and the Smart Screener will automatically parse skills and experience.</p>
       </div>
 
       <div className="glass p-6 md:p-8">
@@ -94,7 +94,7 @@ const AddCandidate = () => {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-white/5">
+          <div className="pt-4 border-t border-slate-200 dark:border-white/5">
             <label className="label">Target Job Description (for AI Matching)</label>
             <p className="text-xs text-slate-500 mb-2">Paste the job description here. The Smart Screener will score the resume against this.</p>
             <textarea 
@@ -104,11 +104,11 @@ const AddCandidate = () => {
             />
           </div>
 
-          <div className="pt-4 border-t border-white/5">
+          <div className="pt-4 border-t border-slate-200 dark:border-white/5">
             <ResumeUpload file={file} setFile={setFile} />
           </div>
 
-          <div className="pt-4 border-t border-white/5">
+          <div className="pt-4 border-t border-slate-200 dark:border-white/5">
             <label className="label">Recruiter Notes</label>
             <textarea {...register('notes')} className="input min-h-[80px]" placeholder="Any initial context..." />
           </div>

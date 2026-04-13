@@ -51,8 +51,8 @@ const Candidates = () => {
     <div className="fade-in max-w-6xl mx-auto pb-8">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">All Candidates</h1>
-          <p className="text-slate-400 text-sm mt-1">Browse, search, and manage your entire talent pool.</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">All Candidates</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Browse, search, and manage your entire talent pool.</p>
         </div>
         <Link to="/candidates/new" className="btn-primary">
           <UserPlus className="w-4 h-4" />
@@ -71,12 +71,12 @@ const Candidates = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-white/5 border-b border-white/10">
-                <th className="p-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Candidate</th>
-                <th className="p-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Match Score</th>
-                <th className="p-4 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">Top Skills</th>
-                <th className="p-4 text-xs font-semibold text-slate-400 uppercase tracking-wider text-right">Actions</th>
+              <tr className="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/10">
+                <th className="p-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Candidate</th>
+                <th className="p-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="p-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Match Score</th>
+                <th className="p-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden md:table-cell">Top Skills</th>
+                <th className="p-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -90,13 +90,13 @@ const Candidates = () => {
                 </tr>
               ) : (
                 candidates.map((c) => (
-                  <tr key={c._id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <tr key={c._id} className="border-b border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                     <td className="p-4">
-                      <div className="font-medium text-slate-200">{c.name}</div>
+                      <div className="font-medium text-slate-900 dark:text-slate-200">{c.name}</div>
                       <div className="text-xs text-slate-500">{c.position || c.email}</div>
                     </td>
                     <td className="p-4">
-                      <span className="badge bg-slate-800 text-slate-300 border border-slate-700">{c.status}</span>
+                      <span className="badge bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">{c.status}</span>
                     </td>
                     <td className="p-4">
                       <ScoreBadge score={c.matchScore} size="sm" />

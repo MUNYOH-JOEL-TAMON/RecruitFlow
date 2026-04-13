@@ -9,8 +9,8 @@ interface ScoreBadgeProps {
 const ScoreBadge: React.FC<ScoreBadgeProps> = ({ score, className = '', size = 'md' }) => {
   if (score === null) {
     return (
-      <div className={`inline-flex items-center gap-1.5 rounded-full border border-slate-600/50 bg-slate-800/50 text-slate-400 font-medium ${size === 'sm' ? 'px-2 py-0.5 text-[10px]' : size === 'lg' ? 'px-3 py-1 text-sm' : 'px-2 py-0.5 text-xs'} ${className}`}>
-        <div className="w-1.5 h-1.5 rounded-full bg-slate-500 animate-pulse-subtle"></div>
+      <div className={`inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-600/50 bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-medium ${size === 'sm' ? 'px-2 py-0.5 text-[10px]' : size === 'lg' ? 'px-3 py-1 text-sm' : 'px-2 py-0.5 text-xs'} ${className}`}>
+        <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500 animate-pulse-subtle"></div>
         Processing
       </div>
     );
