@@ -32,8 +32,8 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-brand-500/20 blur-[128px] rounded-full"></div>
-      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-accent-500/20 blur-[128px] rounded-full"></div>
+      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/20 blur-[128px] rounded-full"></div>
+      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-accent-500/10 dark:bg-accent-500/20 blur-[128px] rounded-full"></div>
 
       <div className="w-full max-w-md z-10">
         <div className="text-center mb-10">
@@ -97,9 +97,9 @@ const Register = () => {
           </form>
         </div>
 
-        <p className="text-center mt-8 text-sm text-slate-400">
+        <p className="text-center mt-8 text-sm text-slate-500 dark:text-slate-400">
           Already have an account?{' '}
-          <Link to="/login" className="text-brand-400 font-medium hover:text-brand-300 transition-colors">
+          <Link to="/login" className="text-brand-600 dark:text-brand-400 font-medium hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
             Sign in
           </Link>
         </p>

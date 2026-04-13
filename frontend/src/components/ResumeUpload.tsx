@@ -32,13 +32,13 @@ const ResumeUpload: React.FC<ResumeUploadProps> = ({ file, setFile, error }) => 
           onDrop={onDrop}
           onDragOver={(e) => e.preventDefault()}
           className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer group
-            ${error ? 'border-red-500/50 bg-red-500/5 hover:bg-red-500/10' : 'border-slate-600 hover:border-brand-500 bg-black/20 hover:bg-white/5'}`}
+            ${error ? 'border-red-500/50 bg-red-500/5 hover:bg-red-500/10' : 'border-slate-300 dark:border-slate-600 hover:border-brand-500 bg-slate-50 dark:bg-black/20 hover:bg-slate-100 dark:hover:bg-white/5'}`}
         >
-          <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 group-hover:text-brand-400 transition-colors">
-            <UploadCloud className="w-6 h-6 text-slate-400 group-hover:text-brand-400" />
+          <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-brand-50 dark:group-hover:bg-brand-500/20 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+            <UploadCloud className="w-6 h-6 text-slate-400 group-hover:text-brand-600 dark:group-hover:text-brand-400" />
           </div>
-          <p className="text-sm font-medium text-slate-200 mb-1">Click or drag PDF to upload</p>
-          <p className="text-xs text-slate-500">Max file size: 10MB</p>
+          <p className="text-sm font-medium text-slate-900 dark:text-slate-200 mb-1">Click or drag PDF to upload</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Max file size: 10MB</p>
           
           <input
             type="file"
@@ -58,14 +58,14 @@ const ResumeUpload: React.FC<ResumeUploadProps> = ({ file, setFile, error }) => 
           }} />
         </div>
       ) : (
-        <div className="glass p-4 rounded-xl flex items-center justify-between border-brand-500/30 bg-brand-500/5">
+        <div className="glass p-4 rounded-xl flex items-center justify-between border-brand-200 dark:border-brand-500/30 bg-brand-50 dark:bg-brand-500/5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded bg-brand-500/20 flex items-center justify-center">
-              <File className="w-5 h-5 text-brand-400" />
+            <div className="w-10 h-10 rounded bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center">
+              <File className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-slate-200 line-clamp-1">{file.name}</p>
-              <p className="text-xs text-slate-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+              <p className="text-sm font-medium text-slate-900 dark:text-slate-200 line-clamp-1">{file.name}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
             </div>
           </div>
           <button
