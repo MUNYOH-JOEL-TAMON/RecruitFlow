@@ -1,4 +1,4 @@
-gitimport React, { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { Candidate, PIPELINE_STAGES } from '../types';
 import KanbanColumn from './KanbanColumn';
