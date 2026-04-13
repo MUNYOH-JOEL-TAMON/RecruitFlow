@@ -7,10 +7,10 @@ export default {
       colors: {
         // Background layers
         bg: {
-          base: 'var(--color-bg-base)',
-          surface: 'var(--color-bg-surface)',
-          card: 'var(--color-bg-card)',
-          elevated: 'var(--color-bg-elevated)',
+          base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+          surface: 'rgb(var(--color-bg-surface) / <alpha-value>)',
+          card: 'rgb(var(--color-bg-card) / <alpha-value>)',
+          elevated: 'rgb(var(--color-bg-elevated) / <alpha-value>)',
         },
         // Brand
         brand: {

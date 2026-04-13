@@ -4,17 +4,17 @@
 
 /* ── Setup & Theming ────────────────────────────────────────────── */
 :root {
-  --color-bg-base: #f1f5f9;
-  --color-bg-surface: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-bg-elevated: #ffffff;
+  --color-bg-base: 241 245 249;
+  --color-bg-surface: 255 255 255;
+  --color-bg-card: 255 255 255;
+  --color-bg-elevated: 255 255 255;
 }
 
 .dark {
-  --color-bg-base: #080d1a;
-  --color-bg-surface: #0d1424;
-  --color-bg-card: #111c30;
-  --color-bg-elevated: #16233d;
+  --color-bg-base: 8 13 26;
+  --color-bg-surface: 13 20 36;
+  --color-bg-card: 17 28 48;
+  --color-bg-elevated: 22 35 61;
 }
 
 @layer base {
