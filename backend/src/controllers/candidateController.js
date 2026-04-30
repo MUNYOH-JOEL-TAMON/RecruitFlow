@@ -3,6 +3,7 @@ const fs = require('fs');
 const { validationResult } = require('express-validator');
 const Candidate = require('../models/Candidate');
 const { PIPELINE_STAGES } = require('../models/Candidate');
+const { screenResume } = require('../services/screener');
 
 // ── GET /api/candidates ────────────────────────────────────────
 const getCandidates = async (req, res, next) => {
@@ -103,20 +104,19 @@ const createCandidate = async (req, res, next) => {
       addedBy: req.user._id,
     });
 
-    // ── ML Screener Hook (stub) ────────────────────────────────
-    // When your FastAPI service is ready, add the call here:
-    //
-    // try {
-    //   const mlResponse = await axios.post('http://localhost:8000/screen', {
-    //     resumeUrl: candidate.resumeUrl,
-    //     jobDescription: candidate.jobDescription,
-    //   });
-    //   candidate.skills = mlResponse.data.skills;
-    //   candidate.matchScore = mlResponse.data.matchScore;
-    //   await candidate.save();
-    // } catch (mlError) {
-    //   console.warn('ML screener unavailable — candidate saved without score:', mlError.message);
-    // }
+    // ── Gemini ML Screener ─────────────────────────────────────
+    if (req.file) {
+      const resumeFilePath = path.join(__dirname, '../../', candidate.resumeUrl);
+      // Run async — don't block the HTTP response
+      screenResume(resumeFilePath, candidate.jobDescription)
+        .then(async ({ skills, matchScore }) => {
+          await Candidate.findByIdAndUpdate(candidate._id, { skills, matchScore });
+          console.log(`🤖 Screened candidate ${candidate._id}: score=${matchScore}`);
+        })
+        .catch((err) => {
+          console.warn('Screener async error:', err.message);
+        });
+    }
     // ──────────────────────────────────────────────────────────
 
     res.status(201).json({ success: true, candidate });
@@ -216,6 +216,32 @@ const getStats = async (req, res, next) => {
   }
 };
 
+// ── POST /api/candidates/:id/rescreen ─────────────────────────
+const reScreenCandidate = async (req, res, next) => {
+  try {
+    const candidate = await Candidate.findById(req.params.id);
+    if (!candidate) {
+      return res.status(404).json({ message: 'Candidate not found.' });
+    }
+    if (!candidate.resumeUrl) {
+      return res.status(400).json({ message: 'No resume uploaded for this candidate.' });
+    }
+
+    const resumeFilePath = path.join(__dirname, '../../', candidate.resumeUrl);
+    const { skills, matchScore } = await screenResume(resumeFilePath, candidate.jobDescription);
+
+    const updated = await Candidate.findByIdAndUpdate(
+      candidate._id,
+      { skills, matchScore },
+      { new: true }
+    ).populate('addedBy', 'name email');
+
+    res.json({ success: true, candidate: updated });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getCandidates,
   getCandidateById,
@@ -223,4 +249,5 @@ module.exports = {
   updateCandidate,
   deleteCandidate,
   getStats,
+  reScreenCandidate,
 };

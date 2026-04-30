@@ -11,6 +11,7 @@ const {
   updateCandidate,
   deleteCandidate,
   getStats,
+  reScreenCandidate,
 } = require('../controllers/candidateController');
 
 const router = express.Router();
@@ -59,6 +60,7 @@ router.get('/:id', getCandidateById);
 router.post('/', upload.single('resume'), createValidation, createCandidate);
 router.patch('/:id', updateCandidate);
 router.delete('/:id', deleteCandidate);
+router.post('/:id/rescreen', reScreenCandidate);
 
 // ── Multer error handler ───────────────────────────────────────
 router.use((err, req, res, next) => {

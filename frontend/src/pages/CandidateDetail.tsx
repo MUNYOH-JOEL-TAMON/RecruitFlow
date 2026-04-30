@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { ArrowLeft, Mail, Phone, Calendar, Trash2, FileText, Download } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, Calendar, Trash2, FileText, Download, Sparkles } from 'lucide-react';
 import { candidatesApi } from '../lib/api';
 import { Candidate, PIPELINE_STAGES } from '../types';
 import ScoreBadge from '../components/ScoreBadge';
@@ -13,6 +13,7 @@ const CandidateDetail = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isRescreening, setIsRescreening] = useState(false);
 
   useEffect(() => {
     const fetchCandidate = async () => {
