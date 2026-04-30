@@ -104,20 +104,19 @@ const createCandidate = async (req, res, next) => {
       addedBy: req.user._id,
     });
 
-    // ── Gemini ML Screener ─────────────────────────────────────
+    // ── Gemini ML Screener (async — does not block response) ───
     if (req.file) {
-      const resumeFilePath = path.join(__dirname, '../../', candidate.resumeUrl);
-      // Run async — don't block the HTTP response
-      screenResume(resumeFilePath, candidate.jobDescription)
+      // Pass resumeUrl directly — screener resolves path internally (fixes Windows bug)
+      screenResume(candidate.resumeUrl, candidate.jobDescription)
         .then(async ({ skills, matchScore }) => {
           await Candidate.findByIdAndUpdate(candidate._id, { skills, matchScore });
           console.log(`🤖 Screened candidate ${candidate._id}: score=${matchScore}`);
         })
         .catch((err) => {
-          console.warn('Screener async error:', err.message);
+          console.error('❌ Screener async error for candidate', candidate._id, ':', err.message);
         });
     }
-    // ──────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────
 
     res.status(201).json({ success: true, candidate });
   } catch (error) {
@@ -227,8 +226,16 @@ const reScreenCandidate = async (req, res, next) => {
       return res.status(400).json({ message: 'No resume uploaded for this candidate.' });
     }
 
-    const resumeFilePath = path.join(__dirname, '../../', candidate.resumeUrl);
-    const { skills, matchScore } = await screenResume(resumeFilePath, candidate.jobDescription);
+    // Pass resumeUrl directly — screener resolves path internally (fixes Windows bug)
+    let skills, matchScore;
+    try {
+      ({ skills, matchScore } = await screenResume(candidate.resumeUrl, candidate.jobDescription));
+    } catch (screenerErr) {
+      console.error('❌ Screener error:', screenerErr.message);
+      return res.status(500).json({
+        message: `Screening failed: ${screenerErr.message}`,
+      });
+    }
 
     const updated = await Candidate.findByIdAndUpdate(
       candidate._id,

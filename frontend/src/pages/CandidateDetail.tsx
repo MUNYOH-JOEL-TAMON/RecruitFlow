@@ -61,8 +61,9 @@ const CandidateDetail = () => {
       const res = await candidatesApi.reScreen(id!);
       setCandidate(res.candidate);
       toast.success('Resume re-screened successfully!', { id: toastId });
-    } catch (error) {
-      toast.error('Re-screening failed. Check your API key.', { id: toastId });
+    } catch (error: any) {
+      const msg = error.response?.data?.message || 'Re-screening failed. Check backend logs.';
+      toast.error(msg, { id: toastId });
     } finally {
       setIsRescreening(false);
     }
