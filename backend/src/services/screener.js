@@ -5,7 +5,7 @@ const pdfParse = require('pdf-parse');
 
 // ── Initialise Gemini client ───────────────────────────────────
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const MODEL = 'gemini-1.5-flash';
+const MODEL = 'gemini-2.5-flash';
 
 // ── Resolve the absolute path to an uploaded file ─────────────
 // candidate.resumeUrl is stored as '/uploads/filename.pdf'
