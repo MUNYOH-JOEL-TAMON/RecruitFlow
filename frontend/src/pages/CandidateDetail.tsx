@@ -54,6 +54,20 @@ const CandidateDetail = () => {
     }
   };
 
+  const handleRescreen = async () => {
+    setIsRescreening(true);
+    const toastId = toast.loading('🤖 Gemini is analysing the resume...');
+    try {
+      const res = await candidatesApi.reScreen(id!);
+      setCandidate(res.candidate);
+      toast.success('Resume re-screened successfully!', { id: toastId });
+    } catch (error) {
+      toast.error('Re-screening failed. Check your API key.', { id: toastId });
+    } finally {
+      setIsRescreening(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -144,7 +158,7 @@ const CandidateDetail = () => {
             <h3 className="label mb-3">Actions</h3>
             <div className="space-y-3">
               {candidate.resumeFilename && (
-                <a 
+                <a
                   href={candidate.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -154,11 +168,22 @@ const CandidateDetail = () => {
                   View Original Resume
                 </a>
               )}
-              
-              <button 
+
+              {candidate.resumeFilename && (
+                <button
+                  onClick={handleRescreen}
+                  disabled={isRescreening}
+                  className="btn-primary w-full justify-start"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  {isRescreening ? 'Analysing...' : 'Re-Screen with Gemini'}
+                </button>
+              )}
+
+              <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="btn-danger w-full justify-start mt-4"
+                className="btn-danger w-full justify-start mt-2"
               >
                 <Trash2 className="w-4 h-4" />
                 {isDeleting ? 'Deleting...' : 'Delete Candidate'}

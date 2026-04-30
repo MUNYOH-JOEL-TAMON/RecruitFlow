@@ -79,6 +79,11 @@ export const candidatesApi = {
     api.delete<{ success: boolean; message: string }>(`/candidates/${id}`).then((r) => r.data),
 
   getStats: () => api.get<StatsResponse>('/candidates/stats').then((r) => r.data),
+
+  reScreen: (id: string) =>
+    api
+      .post<{ success: boolean; candidate: Candidate }>(`/candidates/${id}/rescreen`)
+      .then((r) => r.data),
 };
 
 export default api;
