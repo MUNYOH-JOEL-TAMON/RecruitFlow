@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
+import MobileNav from './components/MobileNav';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -16,7 +18,11 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   if (isLoading) {
-    return <div className="h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="h-screen flex items-center justify-center bg-bg-base">
+        <div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
@@ -27,11 +33,18 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Layout = () => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div className="flex h-screen overflow-hidden">
+      {/* Desktop sidebar */}
       <Sidebar />
+
+      {/* Mobile slide-out nav */}
+      <MobileNav isOpen={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
+
       <div className="flex-1 flex flex-col items-stretch overflow-hidden relative">
-        <Navbar />
+        <Navbar onOpenMobileNav={() => setMobileNavOpen(true)} />
         <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 md:pb-6 relative z-0">
           <Outlet />
         </main>
@@ -45,7 +58,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      
+
       <Route
         path="/"
         element={
@@ -59,7 +72,7 @@ function App() {
         <Route path="candidates/new" element={<AddCandidate />} />
         <Route path="candidates/:id" element={<CandidateDetail />} />
       </Route>
-      
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
