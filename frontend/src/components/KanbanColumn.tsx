@@ -12,7 +12,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ stage, candidates }) => {
   const config = STAGE_CONFIG[stage];
 
   return (
-    <div className="flex-shrink-0 w-[300px] flex flex-col glass overflow-hidden max-h-full">
+    <div className="flex-shrink-0 w-[300px] flex flex-col glass overflow-hidden h-full">
       <div className={`p-4 border-b ${config.border} ${config.bg} flex justify-between items-center shrink-0`}>
         <div className="flex items-center gap-2">
           <div className={`w-2.5 h-2.5 rounded-full ${config.dot}`}></div>
@@ -23,7 +23,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ stage, candidates }) => {
         </span>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3 scrollbar-none">
+      <div className="flex-1 overflow-y-auto p-3 scrollbar-none min-h-0">
         <Droppable droppableId={stage}>
           {(provided, snapshot) => (
             <div
