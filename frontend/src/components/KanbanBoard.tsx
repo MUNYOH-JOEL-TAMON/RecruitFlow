@@ -35,7 +35,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ candidates, onMoveCandidate }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex gap-6 h-[calc(100vh-14rem)] pb-4 overflow-x-auto snap-x snap-mandatory">
+      <div className="flex gap-6 h-full pb-4 overflow-x-auto snap-x snap-mandatory">
         {PIPELINE_STAGES.map((stage) => (
           <div key={stage} className="snap-center h-full">
             <KanbanColumn stage={stage} candidates={columns[stage] || []} />

@@ -23,13 +23,13 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ stage, candidates }) => {
         </span>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3 scrollbar-none min-h-0">
+      <div className="flex-1 overflow-y-auto p-3 min-h-0">
         <Droppable droppableId={stage}>
           {(provided, snapshot) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`min-h-[150px] transition-colors duration-200 rounded-lg ${
+              className={`min-h-full transition-colors duration-200 rounded-lg ${
                 snapshot.isDraggingOver ? 'bg-slate-100 dark:bg-white/5 border border-dashed border-slate-300 dark:border-white/20 p-1' : ''
               }`}
             >

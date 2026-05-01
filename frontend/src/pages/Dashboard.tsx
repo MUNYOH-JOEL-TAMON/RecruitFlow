@@ -95,7 +95,7 @@ const Dashboard = () => {
         onClear={handleClearFilters}
       />
 
-      <div className="flex-1 overflow-hidden mt-4">
+      <div className="flex-1 overflow-hidden min-h-0 mt-4">
         {isLoading && candidates.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div>
